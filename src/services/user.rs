@@ -27,7 +27,7 @@ impl UserService {
                 created_at, updated_at, role
             )
             VALUES ($1, $2, $3, $4, $5, $6, $7, 'student'::user_role)
-            RETURNING first_name, last_name, email, role, created_at, updated_at
+            RETURNING id, first_name, last_name, email, role, created_at, updated_at
             "#,
         )
         .bind(id)
