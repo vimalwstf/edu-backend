@@ -40,7 +40,6 @@ impl NoteService {
             r#"
                 SELECT *
                 FROM notes
-                WHERE uploaded_by = $1
                 ORDER BY created_at DESC
                 LIMIT 100
                 "#,
