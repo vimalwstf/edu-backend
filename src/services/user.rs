@@ -83,4 +83,17 @@ impl UserService {
         let token = create_token(user.id);
         Ok((user, token))
     }
+
+    pub async fn get_user_by_id(pool: &PgPool, id: Uuid) -> Result<User, AppError> {
+        let user = sqlx::query_as::<_, User>(
+            "SELECT id, first_name, last_name, email, role, created_at, updated_at
+             FROM users WHERE id = $1",
+        )
+        .bind(id)
+        .fetch_optional(pool)
+        .await?
+        .ok_or(AppError::NotFound)?;
+
+        Ok(user)
+    }
 }
