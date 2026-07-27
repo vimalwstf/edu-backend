@@ -79,3 +79,11 @@ async fn handler_404() -> impl IntoResponse {
 
     (StatusCode::NOT_FOUND, axum::response::Html(html))
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn router_builds_with_all_routes() {
+        let _router = super::api_router();
+    }
+}

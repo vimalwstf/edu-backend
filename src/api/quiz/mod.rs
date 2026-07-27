@@ -21,11 +21,11 @@ pub fn quiz_router() -> Router<AppState> {
     Router::new()
         .route("/", get(list_quizzes).post(create_quiz))
         .route("/attempts", get(list_attempts))
-        .route("/attempts/:attempt_id/submit", post(submit_attempt))
-        .route("/:quiz_id", get(get_quiz))
-        .route("/:quiz_id/questions", post(add_question))
-        .route("/:quiz_id/attempts", post(start_attempt))
-        .route("/:quiz_id/analytics", get(get_analytics))
+        .route("/attempts/{attempt_id}/submit", post(submit_attempt))
+        .route("/{quiz_id}", get(get_quiz))
+        .route("/{quiz_id}/questions", post(add_question))
+        .route("/{quiz_id}/attempts", post(start_attempt))
+        .route("/{quiz_id}/analytics", get(get_analytics))
         .layer(middleware::from_fn(auth_middleware))
 }
 
