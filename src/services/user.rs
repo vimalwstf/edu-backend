@@ -40,10 +40,10 @@ impl UserService {
         .fetch_one(pool)
         .await
         .map_err(|e| {
-            if let sqlx::Error::Database(db_err) = &e {
-                if db_err.constraint() == Some("users_email_key") {
-                    return AppError::EmailTaken;
-                }
+            if let sqlx::Error::Database(db_err) = &e
+                && db_err.constraint() == Some("users_email_key")
+            {
+                return AppError::EmailTaken;
             }
             e.into()
         })?;

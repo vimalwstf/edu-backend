@@ -20,8 +20,7 @@ pub fn notification_router() -> Router<AppState> {
     Router::new()
         .route(
             "/",
-            post(create_notification_handler)
-                .layer(middleware::from_fn(auth_middleware)),
+            post(create_notification_handler).layer(middleware::from_fn(auth_middleware)),
         )
         .route("/", get(list_notifications_handler))
 }

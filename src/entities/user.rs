@@ -3,18 +3,13 @@ use serde::{Deserialize, Serialize};
 use sqlx::{FromRow, Type};
 use uuid::Uuid;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Type)]
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize, Type)]
 #[sqlx(type_name = "user_role", rename_all = "lowercase")]
 pub enum UserRole {
     Admin,
     Teacher,
+    #[default]
     Student,
-}
-
-impl Default for UserRole {
-    fn default() -> Self {
-        UserRole::Student
-    }
 }
 
 #[derive(Debug, Clone, FromRow, Serialize)]

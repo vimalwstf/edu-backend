@@ -1,17 +1,12 @@
 mod auth;
 mod notes;
 mod notifications;
-// mod quiz;
+mod quiz;
 
 use axum::{Router, http::StatusCode, response::IntoResponse};
 
 use crate::{
-    api::{
-        auth::auth_router,
-        notes::notes_router,
-        notifications::notification_router,
-        // quiz::quiz_router,
-    },
+    api::{auth::auth_router, notes::notes_router, notifications::notification_router},
     state::AppState,
 };
 
@@ -22,7 +17,7 @@ pub fn api_router() -> Router<AppState> {
             Router::new()
                 .nest("/auth", auth_router())
                 .nest("/notes", notes_router())
-                // .nest("/quizzes", quiz_router())
+                .nest("/quizzes", quiz::quiz_router())
                 .nest("/notifications", notification_router()),
         )
         .fallback(handler_404)

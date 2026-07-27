@@ -26,7 +26,7 @@ impl NoteService {
         .bind(&payload.s3_key)
         .bind(&payload.content_type)
         .bind(payload.file_size)
-        .bind(&payload.uploaded_by)
+        .bind(payload.uploaded_by)
         .bind(now)
         .bind(now)
         .fetch_one(pool)

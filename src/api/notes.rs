@@ -143,11 +143,11 @@ async fn upload_note(
         CreateNoteData {
             title: payload.title,
             description: payload.description,
-            file_name: file_name,
-            content_type: content_type,
+            file_name,
+            content_type,
             file_size: bytes.len() as i64,
             uploaded_by: user_id,
-            s3_key: s3_key,
+            s3_key,
         },
     )
     .await?;
